@@ -1,0 +1,14 @@
+.card{
+    max-width: 30rem;
+    margin: .5rem auto;
+    padding: 0 1rem;
+    box-shadow: 6px 4px 9px;
+    .delete{
+       
+        .deleteIcon{
+            width: 10px;
+            height: 10px;
+            color: #000;
+        }
+    }
+}
