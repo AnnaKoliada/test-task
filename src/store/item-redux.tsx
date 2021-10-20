@@ -128,10 +128,11 @@ const showItemsReducer = (
       return stateCopy;
 
     case ADD_ITEM:
+      console.log(state)
       stateCopy = [
         ...state,
         {
-          id: (state.length + 1).toString(),
+          id: (+state[state.length-1].id + 1).toString(),
           text: action.value,
           tags: searchTags(action.value, null),
         },

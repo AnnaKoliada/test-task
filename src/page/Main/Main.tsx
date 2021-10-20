@@ -4,12 +4,17 @@ import Cards from "../../components/Cards/Cards";
 import FindCard from "../../components/FindCard/FindCard";
 import { Iitem } from "../../interface";
 import { addItem } from "../../store/item-redux";
+import s from "./Main.module.scss";
+import cn from "classnames";
 
 function Main() {
   const items = useSelector((state: RootStateOrAny) => state.items);
+
   const [inputAdd, setInputAdd] = useState<string | undefined>("");
   const [inputFind, setInputFind] = useState<string | undefined>("");
   const [filterCards, setFilterCards] = useState<Iitem[]>([]);
+  const [isError, setIsError] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -18,15 +23,21 @@ function Main() {
     dispatch(addItem(inputAdd));
     setInputAdd("");
   };
+
   const handleSubmitFind = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setInputFind("");
-    console.log("inputFind", inputFind);
-    filterItems(inputFind);
+    if (inputFind) {
+      if (inputFind[0] === "#") {
+        setInputFind("");
+        filterItems(inputFind);
+        setIsSubmit(true);
+      } else {
+        setIsError(true);
+      }
+    }
   };
+
   const filterItems = (inputFind: string | undefined) => {
-    // items.map()
-    console.log(inputFind);
     let arr: any = [];
     items.forEach((item: Iitem) => {
       if (inputFind) {
@@ -41,32 +52,50 @@ function Main() {
     });
     setFilterCards(arr);
   };
+
   return (
-    <div>
-      <form onSubmit={(e) => handleSubmitAdd(e)}>
-        <label htmlFor="">Add new note:</label>
-        <input
-          type="text"
-          value={inputAdd}
-          onChange={(e) => {
-            setInputAdd(e.currentTarget.value);
-          }}
-        />
-        <button type="submit">Add</button>
-      </form>
-      <form onSubmit={(e) => handleSubmitFind(e)}>
-        <label htmlFor="">Find note by tag: </label>
-        <input
-          type="text"
-          value={inputFind}
-          onChange={(e) => {
-            setInputFind(e.currentTarget.value);
-          }}
-        />
-        <button type="submit">Find</button>
-      </form>
-      <Cards />
-      <FindCard items={filterCards} />
+    <div className={s.wrapper}>
+      <div className={s.wrapperLeft}>
+        <form className={s.form} onSubmit={(e) => handleSubmitAdd(e)}>
+          <label htmlFor="">Add new note:</label>
+          <div>
+            <input
+              type="text"
+              value={inputAdd}
+              onChange={(e) => {
+                setInputAdd(e.currentTarget.value);
+              }}
+            />
+            <button className={s.buttonAdd} type="submit">
+              Add
+            </button>
+          </div>
+        </form>
+        <Cards />
+      </div>
+      <div className={s.wrapperRight}>
+        <form className={s.form} onSubmit={(e) => handleSubmitFind(e)}>
+          <label htmlFor="">Find note by tag: </label>
+          <div>
+            <input
+              type="text"
+              value={inputFind}
+              onChange={(e) => {
+                setInputFind(e.currentTarget.value); setIsError(false); setIsSubmit(false)
+
+              }}
+            />
+            <button className={s.buttonFind} type="submit">
+              Find
+            </button>
+          </div>
+        </form>
+        {!isError ? (
+          <FindCard items={filterCards} isSubmit={isSubmit} />
+        ) : (
+          <span className={cn(s.error, { [s.activeError]: isError })}>Must start with #</span>
+        )}
+      </div>
     </div>
   );
 }
