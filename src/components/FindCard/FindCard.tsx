@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Iitem } from "../../interface";
 import s from "./FindCard.module.scss";
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { Iitem } from "../../interface";
 import s from "./OneCard.module.scss";

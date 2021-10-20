@@ -97,7 +97,7 @@ export const searchTags = (inputTag: string | null, text: string | null): string
   if (text) {
     if (text.includes("#", idx2)) {
       console.log(text)
-      text = text.replace(/[,\.\?!&-\-'"_%*]/g, " ");
+      text = text.replace(/[,.?!&-\-'"_%*]/g, " ");
       console.log(text)
 
       searchTagsText(text, idx2);
