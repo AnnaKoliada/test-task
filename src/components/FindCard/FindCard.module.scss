@@ -1,13 +1,15 @@
-
-.findWrapper {
+@mixin flex (){
   display: flex;
   flex-wrap: wrap;
+
+}
+.findWrapper {
+  @include flex();
   .card {
     width: 20rem;
     margin: 0.5rem auto;
     padding: 1.5rem;
     box-shadow: 6px 4px 9px;
-    position: relative;
     border-radius: 0.2rem;
     background-color: #9dccf5;
 
@@ -15,11 +17,10 @@
       margin-right: 0.5rem;
     }
     .tags {
+      @include flex();
       margin-top: 1rem;
       border-top: 1px solid black;
       font-style: italic;
-      display: flex;
-      flex-wrap: wrap;
       div {
         margin: 0 0.1rem;
       }

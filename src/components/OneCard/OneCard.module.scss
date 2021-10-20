@@ -1,19 +1,24 @@
+@mixin icon() {
+  text-align: center;
+  align-items: center;
+  border: 1px solid black;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.2rem;
+}
+$shadow: 0px 0px 6px;
+
 .card {
   width: 20rem;
   margin: 0.5rem auto;
   padding: 1.5rem;
-  box-shadow: 6px 4px 9px;
+  box-shadow: $shadow;
   position: relative;
   border-radius: 0.2rem;
   background-color: aliceblue;
 
   .delete {
-    border: 1px solid black;
-    width: 1rem;
-    height: 1rem;
-    text-align: center;
-    align-items: center;
-    border-radius: 0.2rem;
+    @include icon();
     .deleteIcon {
       width: 10px;
       color: #000;
@@ -21,16 +26,11 @@
     &:hover {
       cursor: pointer;
       background-color: rgba(241, 75, 75, 0.877);
-      box-shadow: 0px 0px 6px;
+      box-shadow: $shadow;
     }
   }
   .edit {
-    border: 1px solid black;
-    width: 1rem;
-    height: 1rem;
-    text-align: center;
-    align-items: center;
-    border-radius: 0.2rem;
+    @include icon();
     margin-top: 0.2rem;
     .editIcon {
       width: 10px;
@@ -39,7 +39,7 @@
     &:hover {
       cursor: pointer;
       background-color: rgb(250, 165, 236);
-      box-shadow: 0px 0px 6px;
+      box-shadow: $shadow;
     }
   }
   .icons {
@@ -51,13 +51,13 @@
     margin-right: 0.5rem;
   }
   .tags {
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 1rem;
     border-top: 1px solid black;
     font-style: italic;
-    display: flex;
-    flex-wrap: wrap;
-    div{
+    div {
       margin-right: 0.2rem;
-  }
+    }
   }
 }

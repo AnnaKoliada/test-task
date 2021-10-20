@@ -1,3 +1,5 @@
+$flex: flex;
+
 .poppap {
   position: fixed;
   width: 100%;
@@ -15,7 +17,7 @@
 
   .body {
     min-height: 100%;
-    display: flex;
+    display: $flex;
     align-items: center;
     justify-content: center;
     padding: 30px 10px;
@@ -35,7 +37,6 @@
     textarea {
       width: 100%;
       font-size: 16px;
-
     }
     .button {
       border-radius: 0.5rem;
@@ -57,11 +58,11 @@
     padding: 0;
   }
   .tags {
-    display: flex;
+    display: $flex;
     justify-content: flex-start;
     flex-wrap: wrap;
     .tag {
-      display: flex;
+      display: $flex;
       align-items: flex-start;
       padding: 2px;
       margin: 2px;
@@ -104,7 +105,7 @@
     max-width: 50%;
   }
   .addNewTag {
-    display: flex;
+    display: $flex;
   }
 }
 .activeTag {
@@ -126,7 +127,7 @@
   padding: 0.5rem;
   border-radius: 0.5rem;
   max-width: 8rem;
-  display: flex;
+  display: $flex;
   align-items: center;
   margin: 1rem 0;
   &.active {
