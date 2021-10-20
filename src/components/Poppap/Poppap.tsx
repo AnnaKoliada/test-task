@@ -3,7 +3,7 @@ import { Iitem } from "../../interface";
 import s from "./Poppap.module.scss";
 import cn from "classnames";
 import { useDispatch } from "react-redux";
-import { editItem, searchTags } from "../../store/item-redux";
+import { editItem} from "../../store/item-redux";
 import { AiOutlineClose } from "react-icons/ai";
 import { GrAdd } from "react-icons/gr";
 
@@ -15,6 +15,7 @@ interface Props {
 }
 function Poppap({ active, item, setActive, setItem }: Props) {
   const dispatch = useDispatch();
+
   const [isAddTag, setIsAddTag] = useState(false);
   const [addNewTag, setAddNewTag] = useState("");
   const [isError, setIsError] = useState(false);
@@ -30,9 +31,8 @@ function Poppap({ active, item, setActive, setItem }: Props) {
       setIsAddTag(false);
     }
   };
-  const focusTags = () => {
 
-  };
+
   const deleteTag = (el: string) => {
     console.log(item);
     let index = item?.tags.indexOf(el);
@@ -85,9 +85,8 @@ function Poppap({ active, item, setActive, setItem }: Props) {
                   value={item.text}
                   onChange={(e) => {
                     setItem({ id: item.id, text: e.currentTarget.value, tags: item.tags });
-                    focusTags();
                   }}
-                ></textarea>{" "}
+                ></textarea>
                 <div className={s.tags}>
                   {item.tags.map((el, i) => {
                     return (
@@ -120,7 +119,9 @@ function Poppap({ active, item, setActive, setItem }: Props) {
                       Add
                     </div>
                   </div>
-                  <span className={cn(s.error, { [s.activeError]: isError })}>Must start with #</span>
+                  <span className={cn(s.error, { [s.activeError]: isError })}>
+                    Must start with #
+                  </span>
                 </div>
                 <button className={cn(s.button, { [s.disable]: isError })} type="submit">
                   Edit
