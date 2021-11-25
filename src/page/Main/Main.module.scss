@@ -1,0 +1,54 @@
+$flex: flex;
+$wrap: wrap;
+
+.wrapper {
+  display: $flex;
+  padding: 1rem;
+  flex-wrap: $wrap;
+  .wrapperLeft,
+  .wrapperRight {
+    flex-basis: 50%;
+    flex-wrap: $wrap;
+    display: $flex;
+    flex-direction: column;
+
+    .form {
+      display: $flex;
+      flex-wrap: $wrap;
+      justify-content: center;
+      padding: 1rem 1rem 0 1rem;
+      flex-direction: column;
+    }
+    label {
+      font-size: 24px;
+    }
+    input {
+      border: none;
+      border-bottom: 1px solid black;
+      background-color: #faedf9;
+      padding: 0.6rem;
+      width: 80%;
+    }
+    button {
+      border: 1px solid black;
+      padding: 0.5rem;
+      border-radius: 0 0.5rem 0.5rem 0;
+      font-size: 20px;
+    }
+    .buttonAdd {
+      background-color: #f0f8ff;
+    }
+    .buttonFind {
+      background-color: #9dccf5;
+    }
+  }
+}
+.error {
+  display: none;
+  color: rgb(218, 29, 29);
+  padding-left: 1rem;
+ 
+  &.activeError {
+    display: block;
+  }
+}
